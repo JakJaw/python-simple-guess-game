@@ -1,0 +1,71 @@
+logo ="""
+..__        _        _                
+   \ \  __ _| | __   (_) __ ___      __
+    \ \/ _` | |/ /   | |/ _` \ \ /\ / /
+ /\_/ / (_| |   <    | | (_| |\ V  V / 
+ \___/ \__,_|_|\_\  _/ |\__,_| \_/\_/  
+                   |__/                
+"""
+import random
+
+def get_random():
+  random_number = random.randint(1,101)
+  return random_number
+
+def difficulty():
+  diff = input("Choose difficulty. Type 'easy' or 'hard': ").lower()
+  if diff == 'easy':
+    attempts = 10
+    return attempts
+  else:
+    attempts = 5
+    return attempts
+
+def user_guess():
+  user_number = int(input("Make a guess: "))
+  return user_number
+
+def check(user_number,Computer_number):
+  if user_number > Computer_number:
+    check = "Too high"
+    return check
+  elif user_number < Computer_number:
+    check = "Too low"
+    return check
+  else:
+    check = "U are correct"
+
+
+def game():
+  print(f"{logo}\nWelcome to the number guessing game.\nIm thinking about number between 1 and 100")
+
+  attempts = difficulty()
+  Computer_number = get_random()
+
+  while attempts > 0:
+    print(f"You have {attempts} attempts.")
+    user_number = user_guess()
+
+    if user_number == Computer_number:
+      print(f"U won!!! The number i was thinking about was: {Computer_number}")
+      return 0
+    else:
+      print(check(user_number,Computer_number))
+      attempts -= 1
+
+  if attempts == 0:
+    print(f"Game Over u have 0 attempts left. The number i was thinking about was: {Computer_number}")
+    return 0
+  else:
+    return 0
+
+def menu():
+  o = input("Do u wanna play again? (y/n): ").lower()
+  if o == "y":
+    return 1
+  else:
+    return 0
+
+game()
+while menu() == 1:
+  game()
